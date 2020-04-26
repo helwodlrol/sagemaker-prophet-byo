@@ -1,0 +1,5 @@
+{
+    "interval_width": "0.9",
+    "changepoint_prior_scale": "0.05",
+    "holidays_prior_scale": "10"
+}
