@@ -49,6 +49,7 @@ def train():
         raw_data = [ pd.read_csv(file, header=None) for file in input_files ]
         train_data = pd.concat(raw_data)
         train_data.columns = ['ds', 'y']
+        train_data['ds'] = train_data.to_datetime(train_data['ds'], unit='s')
 
         # Here we only support a single hyperparameter. Note that hyperparameters are always passed in as
         # strings, so we need to do any necessary conversions.
