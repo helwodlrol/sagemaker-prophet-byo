@@ -52,15 +52,9 @@ def train():
 
         # Here we only support a single hyperparameter. Note that hyperparameters are always passed in as
         # strings, so we need to do any necessary conversions.
-        interval_width = trainingParams.get('interval_width', None)
-        changepoint_prior_scale = trainingParams.get('changepoint_prior_scale', None)
-        holidays_prior_scale = trainingParams.get('holidays_prior_scale', None)
-        if interval_width is not None:
-            interval_width = float(interval_width)
-        if changepoint_prior_scale is not None:
-            changepoint_prior_scale = float(changepoint_prior_scale)
-        if holidays_prior_scale is not None:
-            holidays_prior_scale = float(holidays_prior_scale)
+        interval_width = float(trainingParams.get('interval_width', 0.9))
+        changepoint_prior_scale = float(trainingParams.get('changepoint_prior_scale', 0.05))
+        holidays_prior_scale = float(trainingParams.get('holidays_prior_scale', 10))
 
         # Now use facebook's prophet to train the model.
         m = Prophet(interval_width=interval_width, 
