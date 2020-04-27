@@ -46,10 +46,9 @@ def train():
                               'This usually indicates that the channel ({}) was incorrectly specified,\n' +
                               'the data specification in S3 was incorrectly specified or the role specified\n' +
                               'does not have permission to access the data.').format(training_path, channel_name))
-        raw_data = [ pd.read_csv(file, header=None) for file in input_files ]
+        raw_data = [ pd.read_csv(file) for file in input_files ]
         train_data = pd.concat(raw_data)
-        train_data.columns = ['ds', 'y']
-        train_data['ds'] = train_data.to_datetime(train_data['ds'], unit='s')
+        train_data['ds'] = pd.to_datetime(train_data['ds'], unit='s')
 
         # Here we only support a single hyperparameter. Note that hyperparameters are always passed in as
         # strings, so we need to do any necessary conversions.
