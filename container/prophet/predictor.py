@@ -31,7 +31,7 @@ class ScoringService(object):
     def get_model(cls):
         """Get the model object for this instance, loading it if it's not already loaded."""
         if cls.model == None:
-            with open(os.path.join(model_path, 'prophet.pkl'), 'r') as inp:
+            with open(os.path.join(model_path, 'prophet.pkl'), 'rb') as inp:
                 cls.model = pickle.load(inp)
         return cls.model
 
@@ -83,7 +83,7 @@ def transformation():
 
     # Convert from numpy back to CSV
     out = StringIO()
-    pd.DataFrame({'results':predictions}).to_csv(out, header=True, index=False)
+    predictions.to_csv(out, header=True, index=False)
     result = out.getvalue()
 
     return flask.Response(response=result, status=200, mimetype='text/csv')

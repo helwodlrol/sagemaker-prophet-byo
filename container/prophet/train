@@ -69,7 +69,7 @@ def train():
         m = m.fit(train_data)
 
         # save the model
-        with open(os.path.join(model_path, 'prophet.pkl'), 'w') as out:
+        with open(os.path.join(model_path, 'prophet.pkl'), 'wb') as out:
             pickle.dump(m, out)
         print('Training complete.')
     except Exception as e:
